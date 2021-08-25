@@ -2,6 +2,7 @@ package com.mashup.shopmenu.web
 
 import com.mashup.shopmenu.common.response.ShopMenuResponse
 import com.mashup.shopmenu.dto.request.CreateShopRequestDTO
+import com.mashup.shopmenu.dto.request.UpdateShopRequestDTO
 import com.mashup.shopmenu.dto.response.CreateShopResponseDTO
 import com.mashup.shopmenu.service.ShopService
 import org.slf4j.Logger
@@ -28,12 +29,12 @@ class ShopController(
 
     @GetMapping("/{shopID}")
     fun getShopDetailInfo(@PathVariable("shopID") shopID: Long): ResponseEntity<Any> {
-        return ShopMenuResponse.successOf("successDTO")
+        return ShopMenuResponse.successOf(shopService.findByShopID(shopID))
     }
 
-    @PutMapping("/{shopID}")
-    fun updateShop(@PathVariable("shopID") shopID: Long): ResponseEntity<Any> {
-        return ShopMenuResponse.successOf("successDTO")
+    @PutMapping
+    fun updateShop(@RequestBody updateShopRequestDTO: UpdateShopRequestDTO): ResponseEntity<Any> {
+        return ShopMenuResponse.successOf(shopService.updateShop(updateShopRequestDTO))
     }
 
     @DeleteMapping("/{shopID}")
