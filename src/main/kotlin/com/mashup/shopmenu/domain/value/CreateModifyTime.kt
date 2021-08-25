@@ -6,10 +6,10 @@ import java.time.LocalDateTime
 import javax.persistence.Embeddable
 
 @Embeddable
-class CreateModifyTime(
+data class CreateModifyTime(
     @CreatedDate
-    private val createTime: LocalDateTime,
+    var createTime: LocalDateTime = LocalDateTime.MIN,
     @LastModifiedDate
-    private val lastModifiedTime: LocalDateTime
+    var lastModifiedTime: LocalDateTime = LocalDateTime.MIN
 ) {
 }
